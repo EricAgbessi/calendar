@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Timeline from 'react-calendar-timeline';
+import Timeline, {SidebarHeader, TimelineHeaders} from 'react-calendar-timeline';
 import 'react-calendar-timeline/lib/Timeline.css';
 import {
   TimelineMarkers,
@@ -8,6 +8,8 @@ import {
   CursorMarker
 } from 'react-calendar-timeline'
 import moment from 'moment';
+import DateHeader from "react-calendar-timeline/lib/lib/headers/DateHeader";
+import './style.css'
 
 
 const NewItemModal = ({ onClose, onSubmit,onNewItem }) => {
@@ -139,7 +141,6 @@ const [isModalOpen, setIsModalOpen] = useState(false);
   const [newItemTime, setNewItemTime] = useState(null);
 
   const onCanvasClick = (groupId, time, e) => {
-    console.log(groupId, time);
     setNewItemGroupId(groupId);
     setNewItemTime(time);
     setIsModalOpen(true);
@@ -152,7 +153,7 @@ const today = new Date();
 const startOfWeek = new Date(2024, 6, 8, 9, 0);
 startOfWeek.setHours(0, 0, 0, 0); // Début du jour actuel à 00:00:00
 const endOfWeek = new Date(today);
-endOfWeek.setDate(startOfWeek.getDate() +4); // Fin de la semaine actuelle (7 jours plus tard)
+endOfWeek.setDate(startOfWeek.getDate() +5); // Fin de la semaine actuelle (7 jours plus tard)
 
 // Filtrer les éléments pour ne montrer que ceux qui sont dans la semaine en cours
 const filteredItems = items.filter(item => {
@@ -207,18 +208,16 @@ const itemRenderer = ({
           cursor: 'pointer',
           overflow: 'hidden',
           position: 'absolute', 
-          minwidth: "150px",
+          minWidth: "150px",
           color: "black",
 
         }
       })}
     >
 
-      <div className='custom-item' style={{height:"100%",width:"100%" }}>
-            <section style={{  fontSize: '14px',height:"100%",width:"100%", fontWeight: 'bold', marginBottom: '8px',display:"grid", gridTemplateColumns:"auto auto" , gap:"0.5rem"}}>
-                <article style={{height:"100%",width:"100%"}}>{item.title} </article>
-                <article style={{wordWrap:"break-word",height:"100%",width:"100%"}}>{item.description || 'Description de l\'événement'}</article>
-            </section>
+      <div className='rct-item-content' style={{height:"100%",width:"100%" }}>
+            <div>Hello Bake</div>
+            <div>Hello Toni</div>
         </div>
 
     </div>
@@ -263,31 +262,35 @@ return (
     traditionalZoom={false}
     timeSteps={
                 {
-       
+
         hour:24,
-     
+
         }
     }
     onCanvasClick={onCanvasClick}>
 
-      {/* custom renderer for this marker */}
-      {({ styles, date }) => {
-        const customStyles = {
-          ...styles,
-          backgroundColor: 'deeppink',
-          width: '400px'
+      <TimelineHeaders className="sticky">
+          <SidebarHeader>
+              {({ getRootProps }) => {
+                  return <div {...getRootProps()}>Chantiers</div>;
+              }}
+          </SidebarHeader>
+          {/*<DateHeader unit="primaryHeader" />*/}
+          <DateHeader />
+      </TimelineHeaders>
 
-        }
-        return <div style={customStyles} onClick={someCustomHandler} />
-      }}
+      {/*/!* custom renderer for this marker *!/*/}
+      {/*{({ styles, date }) => {*/}
+      {/*  const customStyles = {*/}
+      {/*    ...styles,*/}
+      {/*    backgroundColor: 'deeppink',*/}
+      {/*    width: '400px'*/}
+
+      {/*  }*/}
+      {/*  return <div style={customStyles} onClick={someCustomHandler} />*/}
+      {/*}}*/}
 
 </Timeline>
-
-   {isModalOpen && (
-        <NewItemModal
-          onClose={() => setIsModalOpen(false)}
-        />
-      )}
     </>
   
 );
