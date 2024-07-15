@@ -1,0 +1,161 @@
+/*.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+
+
+
+.rct-item {
+  background-color: #f0f0f0;
+  border: 1px solid #000000;
+  color: #333;
+  padding: 0px !important;
+  z-index: 1000000000000000000000000000 !important;
+  display: block;
+  width: auto !important;
+ //position: relative !important;
+ 
+}
+
+.rct-item:hover {
+  background-color: #e0e0e0;
+}
+
+
+.react-calendar-timeline .rct-scroll {
+    overflow-x: hidden;
+}
+
+
+.rct-scroll{
+  position: inherit;
+}
+
+.rct-item.custom-event-class{
+  padding: 0px !important;
+}
+
+.rct-item-content{
+  position: inherit;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start;
+  align-items: flex-start;
+  
+}
+
+
+
+
+.rct-vertical-lines{
+  position: inherit;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+
+.rct-scroll > div:first-child{
+  position: inherit !important;
+}
+
+.rct-calendar-header > div:first-child {
+  border: 1px solid red !important;
+  position: inherit !important;
+  height: 30px; 
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start;
+}
+
+.rct-calendar-header{
+  position: none;
+  width: 100% !important;
+  max-width: 100% !important;
+  border: none !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start;
+}
+
+
+.rct-dateHeader.rct-dateHeader-primary {
+  flex-grow: 1;
+}
+
+
+.rct-dateHeader {
+  position: inherit !important;
+  width: auto !important;
+  flex-grow: 1;
+}
+
+.rct-dateHeader > span{
+    color: black;
+}
+
+.rct-header-root.sticky{
+  background-color: white;
+}
+
+
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid black;
+}
+
+
+
+.rct-vertical-lines{
+  position: inherit;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 100% !important;
+}
+
+.rct-vl.rct-vl-first {
+  position: inherit !important;  
+  width: auto !important;
+  flex-grow: 1 !important;     
+  border: 1px solid rgb(87, 87, 87);                                                                                                                                               ;
+}
+
+.rct-scroll > div {
+    position: inherit !important;
+}
+
+.rct-scroll{
+  width: auto !important;
+  //position: inherit !important;
+}
+
+*/
+
+.rct-item-content > div{
+  flex-grow: 1;
+  line-height: 15px !important;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.rct-item-content-table{
+  line-height: 20px;
+  width: 100%;
+}
+
+
+.rct-item-content{
+  position: inherit;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start;
+  align-items: flex-start;
+  
+}

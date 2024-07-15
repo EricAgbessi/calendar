@@ -9,7 +9,8 @@ import {
 } from 'react-calendar-timeline'
 import moment from 'moment';
 import DateHeader from "react-calendar-timeline/lib/lib/headers/DateHeader";
-import './style.css'
+import './style.scss'
+import EventContent from './components/eventContent';
 
 
 const NewItemModal = ({ onClose, onSubmit,onNewItem }) => {
@@ -88,43 +89,7 @@ const items = [
     group: 4,
     title: 'Réunion de coordination',
     start_time: new Date(2024, 6, 13, 0, 0), // Date et heure de début (2024, 6, 13 représente le 13 juillet 2024)
-    end_time: new Date(2024, 6, 13, 24
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        , 0), // Date et heure de fin
+    end_time: new Date(2024, 6, 13, 24, 0), // Date et heure de fin
     description: 'Réunion pour coordonner les activités des différents chantiers',
     tip: 'additional information',
     color: 'rgb(158, 14, 206)',
@@ -153,7 +118,7 @@ const today = new Date();
 const startOfWeek = new Date(2024, 6, 8, 9, 0);
 startOfWeek.setHours(0, 0, 0, 0); // Début du jour actuel à 00:00:00
 const endOfWeek = new Date(today);
-endOfWeek.setDate(startOfWeek.getDate() +5); // Fin de la semaine actuelle (7 jours plus tard)
+endOfWeek.setDate(startOfWeek.getDate() +4); // Fin de la semaine actuelle (7 jours plus tard)
 
 // Filtrer les éléments pour ne montrer que ceux qui sont dans la semaine en cours
 const filteredItems = items.filter(item => {
@@ -215,10 +180,7 @@ const itemRenderer = ({
       })}
     >
 
-      <div className='rct-item-content' style={{height:"100%",width:"100%" }}>
-            <div>Hello Bake</div>
-            <div>Hello Toni</div>
-        </div>
+     <EventContent />
 
     </div>
   );
@@ -245,52 +207,49 @@ const groupRenderer = ({ group }) => {
 
 return (
     <>
+    <div style={{backgroundColor:"red"}}>
+        <Timeline groups={groups}
+          items={filteredItems}
+          lineHeight={250}
+          itemRenderer={itemRenderer}
+          itemHeightRatio={1}
+          groupRenderer={groupRenderer}
+          buffer={1}
+          defaultTimeStart={visibleTimeStart}
+          defaultTimeEnd={visibleTimeEnd}
+          visibleTimeStart={visibleTimeStart}
+          visibleTimeEnd={visibleTimeEnd}
+          traditionalZoom={false}
+          timeSteps={{hour:24,}}
+          onCanvasClick={onCanvasClick}>
 
+            <TimelineHeaders className="sticky" style={{position:"relative"}}>
+                <SidebarHeader>
+                    {({ getRootProps }) => {
+                        return <div {...getRootProps({
+                          style:{
+                            width:"50px"
+                          }
+                        })}>Chantiers</div>;
+                    }}
+                </SidebarHeader>
+                <DateHeader unit="primaryHeader" />
+            </TimelineHeaders>
 
+            {/*/!* custom renderer for this marker *!/*/}
+            {/*{({ styles, date }) => {*/}
+            {/*  const customStyles = {*/}
+            {/*    ...styles,*/}
+            {/*    backgroundColor: 'deeppink',*/}
+            {/*    width: '400px'*/}
 
-  <Timeline groups={groups}
-    items={filteredItems}
-    lineHeight={250}
-    itemRenderer={itemRenderer}
-    itemHeightRatio={1}
-    groupRenderer={groupRenderer}
-    buffer={1}
-    defaultTimeStart={visibleTimeStart}
-    defaultTimeEnd={visibleTimeEnd}
-    visibleTimeStart={visibleTimeStart}
-    visibleTimeEnd={visibleTimeEnd}
-    traditionalZoom={false}
-    timeSteps={
-                {
+            {/*  }*/}
+            {/*  return <div style={customStyles} onClick={someCustomHandler} />*/}
+            {/*}}*/}
 
-        hour:24,
-
-        }
-    }
-    onCanvasClick={onCanvasClick}>
-
-      <TimelineHeaders className="sticky">
-          <SidebarHeader>
-              {({ getRootProps }) => {
-                  return <div {...getRootProps()}>Chantiers</div>;
-              }}
-          </SidebarHeader>
-          {/*<DateHeader unit="primaryHeader" />*/}
-          <DateHeader />
-      </TimelineHeaders>
-
-      {/*/!* custom renderer for this marker *!/*/}
-      {/*{({ styles, date }) => {*/}
-      {/*  const customStyles = {*/}
-      {/*    ...styles,*/}
-      {/*    backgroundColor: 'deeppink',*/}
-      {/*    width: '400px'*/}
-
-      {/*  }*/}
-      {/*  return <div style={customStyles} onClick={someCustomHandler} />*/}
-      {/*}}*/}
-
-</Timeline>
+      </Timeline>
+    </div>
+        
     </>
   
 );
